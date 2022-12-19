@@ -26,8 +26,7 @@ The list of libraries that you need to install to execute the code:
 # Training
 We train three models(EfficientNet, ResNet and DenseNet) and ensemble.
 use metrics (acc, f1 score) in usage_metrics/Metric to do validation
-`python main.py`
+train each model with `python main.py`
 
 # Testing
-save result to csv file
-`python test.py`
+save result to csv file with `python test.py`
