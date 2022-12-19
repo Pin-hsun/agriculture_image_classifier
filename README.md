@@ -1,6 +1,6 @@
 # agriculture_image_classifier
-# AI Cup 2022
-# team_2248
+AI Cup 2022
+team_2248
 
 # Install
 The list of libraries that you need to install to execute the code:
