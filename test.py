@@ -100,8 +100,8 @@ def schedule(model, img, meta, model2, model3):
 
 
 if __name__=='__main__':
-    root = ''
-    data_root = ''
+    pth_root = '' #place to save model
+    data_root = '' #testing dataset root
     csv_path = ''
     ckpt = 'checkpoint'
 
@@ -124,20 +124,20 @@ if __name__=='__main__':
     print('Training images:', len(test_dataset))
 
     model = network_map(net1).cuda()
-    states = torch.load(os.path.join(root, log_name1, ckpt, f'weights.{epoch1}.pth'))
+    states = torch.load(os.path.join(pth_root, log_name1, ckpt, f'weights.{epoch1}.pth'))
     model.load_state_dict(states['model'])
     model.eval()
 
     if net2 is not None:
         model2 = network_map(net2).cuda()
-        states = torch.load(os.path.join(root, log_name2, ckpt, f'weights.{epoch2}.pth'))
+        states = torch.load(os.path.join(pth_root, log_name2, ckpt, f'weights.{epoch2}.pth'))
         model2.load_state_dict(states['model'])
         model2.eval()
     else:
         model2 = None
     if net3 is not None:
         model3 = network_map(net3).cuda()
-        states = torch.load(os.path.join(root, log_name3, ckpt, f'weights.{epoch3}.pth'))
+        states = torch.load(os.path.join(pth_root, log_name3, ckpt, f'weights.{epoch3}.pth'))
         model3.load_state_dict(states['model'])
         model3.eval()
     else:
