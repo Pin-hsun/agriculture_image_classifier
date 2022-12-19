@@ -100,22 +100,22 @@ def schedule(model, img, meta, model2, model3):
 
 
 if __name__=='__main__':
-    root = '/media/ExtHDD01/argulture_log'
-    data_root = '/media/ExtHDD01/Dataset/p_t/'
-    csv_path = '/media/ExtHDD01/Dataset/p_t/test.csv'
+    root = ''
+    data_root = ''
+    csv_path = ''
     ckpt = 'checkpoint'
 
     # set testing parameters
-    batch_size = 20
+    batch_size = 3
     net1 = 'meta_efficientnet'
     net2 = 'meta_densenet'
     net3 = 'meta_efficientnet'
-    log_name1 = 'efficient_geo_768_1016_1122'
-    log_name2 = 'meta_densenet_all_sam_optim_768_1028_1103'
-    log_name3 = 'efficientnet_geo_all_720_1021'
-    epoch1 = 23
-    epoch2 = 28
-    epoch3 = 22
+    log_name1 = ''
+    log_name2 = ''
+    log_name3 = ''
+    epoch1 = 1
+    epoch2 = 1
+    epoch3 = 1
     gpu = True
 
     test_dataset = TestAgriDataset(data_root, csv_path, 'test')
@@ -158,7 +158,7 @@ if __name__=='__main__':
 
     pred = torch.cat(pred_t, 0)
 
-    # document results
+    # save result
     os.makedirs('result', exist_ok=True)
     with open(f'result/{args.log_name}.csv', 'w') as f:
         writer = csv.writer(f)
@@ -166,10 +166,3 @@ if __name__=='__main__':
         for i in range(len(pred)):
             tmp = [id_t[i], attrs_default[pred[i].item()]]
             writer.writerow(tmp)
-
-# CUDA_VISIBLE_DEVICES=0 python test.py --log_name efficientnet_512_batch15_CEloss_1008 --epoch 26 --gpu --net efficientnet
-# CUDA_VISIBLE_DEVICES=2 python test.py --net efficientnet --log_name efficientnet_640_batch7_CEloss_1006 --epoch 25 --batch_size 60 --gpu
-# CUDA_VISIBLE_DEVICES=1 python test_prob.py --net meta_efficientnet --log_name efficient_geo_768_1016_1122 --batch_size_per_gpu 50 --epoch 23 --gpu --log_name2 meta_densenet_sam_optim_512_1028_1103_1117 --epoch2 28 --net2 meta_densenet
-
-
-# CUDA_VISIBLE_DEVICES=1 python test_prob.py --net meta_efficientnet --log_name efficient_geo_768_1016_1122 --batch_size_per_gpu 50 --epoch 23 --gpu --log_name2 meta_densenet_all_sam_optim_768_1028_1103 --epoch2 28 --net2 meta_densenet --log_name3 efficientnet_geo_all_720_1021 --epoch3 22 --net3 meta_efficientnet

@@ -94,9 +94,9 @@ class Classifier():
 
 
 if __name__=='__main__':
-    dst_root = '/media/ExtHDD02/argulture_log/' # model saving
-    data_root = '/media/ExtHDD01/Dataset/argulture/' # image data
-    csv_path = '/media/ExtHDD01/Dataset/argulture/final.csv' # ID & labels
+    dst_root =  '' # model saving
+    data_root = '' # image data
+    csv_path = ''  # ID & labels
 
     # set model parameters
     args = {'gpu':True,
@@ -153,9 +153,3 @@ if __name__=='__main__':
         classifier.save(os.path.join(
             dst_root, args['prj'], 'checkpoint', 'weights.{:d}.pth'.format(args['epoch'])
         ))
-
-
-# training code
-# CUDA_VISIBLE_DEVICES=3 python main_first.py --net meta_densenet --experiment_name meta_densenet_sam_optim_512_1028_1030 --lr 0.0005 --gpu
-# fine tune code
-# CUDA_VISIBLE_DEVICES=3 python main_first.py --net meta_densenet --experiment_name meta_densenet_sam_optim_512_1028_1030 --lr 0.0005 --ckpt meta_densenet_sam_optim_512_1028/checkpoint/weights.29.pth --gpu --batch_size 15
